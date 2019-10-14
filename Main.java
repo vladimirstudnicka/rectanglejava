@@ -4,6 +4,7 @@ import org.w3c.dom.ls.LSOutput;
 import sk.itsovy.studnicka.other.FreeClass;
 
 import java.sql.SQLOutput;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -498,19 +499,6 @@ public class Main {
             default:
                 System.out.println("Wrong month input!");
         }
-        switch (year) {
-            case 13:
-                if (year >= 500) {
-                    System.out.println("Rat");
-                    break;
-                } else if (year <= 500) {
-                    System.out.println("something else");
-                    break;
-                }
-            default:
-                System.out.println("Wrong year input");
-
-        }
 
     }
 
@@ -642,17 +630,27 @@ public class Main {
     //to iste + to osetrit pre +, -, * kde + musi mat 50% uspesnost
     //3. uloha
     //to iste ale nech sa to opakuje 10 krat v cykle a nech na konci vypise pocet spravnych a nespravnych odpovedi
+    // 4. uloha
+    //pri spusteni zadate meno a vypise uvitanie
+    //5. uloha
+    //vypisat dlzku pracovania programu
     public static void getRandomNum() {
 
         Random rnd = new Random();
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter name: ");
+        String input = sc.nextLine();
+        System.out.println("Hello " + input + "\n" + "Welcome to this test: ");
 
-        int o;
+        int a;
         int correctAnswers = 0;
         int incorrectAnswers = 0;
 
+        Date start = new Date();
+        long startTime = start.getTime();
+
         for (int i = 1; i <= 10; i++) {
-            System.out.println(i+ ".Example");
+            System.out.println(i+ "Example");
             int m = rnd.nextInt(90) + 10;
             int n = rnd.nextInt(90) + 10;
             int p = rnd.nextInt(4);
@@ -670,10 +668,9 @@ public class Main {
                     break;
             }
 
-            o = sc.nextInt();
+            a = sc.nextInt();
 
-
-            if ((p == 0 && o == (m+n)) || (p == 1 && o ==(m+n)) || (p == 2 && o == (m - n)) || (p == 3 && o == (m*n))) {
+            if ((p == 0 && a == (m+n)) || (p == 1 && a ==(m+n)) || (p == 2 && a == (m - n)) || (p == 3 && a == (m*n))) {
                 System.out.println("Correct.");
                 correctAnswers++;
             }
@@ -682,9 +679,29 @@ public class Main {
                 incorrectAnswers++;
             }
 
+
         }
         System.out.println("Correct answers: " + correctAnswers + "\n" + "Incorrect answers: " + incorrectAnswers);
+
+
+        Date end = new Date();
+        long endTime = end.getTime();
+        long resultTimes = endTime - startTime;
+        long minutes = 0;
+        long seconds = 0;
+        System.out.println(end.getTime());
+        System.out.println("Correct answers: " + correctAnswers + " Incorrect answers: " + incorrectAnswers);
+        resultTimes = resultTimes/1000;
+        if (resultTimes >= 60) {
+            minutes++;
+            seconds = resultTimes - 60;
+        }
+        else {
+            seconds = resultTimes;
+        }
+        System.out.println("Minutes: " + minutes + " Seconds: " + seconds);
     }
+
 
 }
 
